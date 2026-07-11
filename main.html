@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js" defer></script>
+    <link rel="icon" href="/assets/tab logo icon.png" />
+    <title>Home Page</title>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img class="header-logo" src="/assets/GKL Labs.png" alt="GKL Labs">
+        </a>
+        <div class="header-right">
+            <button class="signin-btn" onclick="openSigninOverlay()">SIGN IN</button>
+            <div class="menu-btn" onclick="openOverlay()">
+                <img src="/assets/Menu Icon.png" alt="Menu" />
+            </div>
+        </div>
+    </header>
+    <div id="lander" class="lander">
+        <img class="landerlogo" src="/assets/MAIN GKL LOGO.png" alt="">
+    </div>
+    <div id="about-us" class="about-us">
+        <div class="about-us-text">
+            <h2>ABOUT US</h2>
+            <p>GKL Labs builds custom PCs designed for performance, reliability, and your specific needs. Whether you're gaming, creating content, or working, every system is carefully assembled, tested and optimized to deliver a smooth and powerful experience. We focus on using quality components, smart design, and attention to detail in every build. Our goal is simple: to create systems that not only meet your expectations but exceed them. At GKL Labs, customer satisfaction comes first—so you get a PC you can truly rely on.</p>
+        </div>
+        <img class="about-img" src="/assets/About us IMG.png" alt="pc build" />
+    </div>
+    <div id="built-by-us" class="built-by-us">
+        <h2>BUILT BY US</h2>
+        <div class="carousel-wrap">
+            <div class="carousel-track">
+                <div class="build-item"><img src="/assets/build blurple.png" alt="Build 1" /></div>
+                <div class="build-item"><img src="/assets/build orange.png" alt="Build 2" /></div>
+                <div class="build-item"><img src="/assets/build red.png" alt="Build 3" /></div>
+                <div class="build-item"><img src="/assets/build rgb.png" alt="Build 4" /></div>
+                <div class="build-item"><img src="/assets/build cyan.png" alt="Build 5" /></div>
+            </div>
+        </div>
+        <p class="carousel-hint">Swipe to see more.</p>
+        <p class="section-hint">Tap on build to see details.</p>
+    </div>
+    <div id="review" class="review">
+        <h2>WRITE A REVIEW</h2>
+        <p class="review-subtitle">Leave a review based on your experience with GKL</p>
+        <p class="review-persuade">Loved your build? Take 30 seconds and let others know. Every review helps us grow and helps someone else make the right choice.</p>
+        <a class="review-btn" href="https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID" target="_blank">
+        <span class="review-btn-text">Leave a Review</span>
+        </a>
+        <p class="review-note">Note: This review will be published as official google review on business page.</p>
+    </div>
+    <footer>
+        <div class="footer-top">
+            <a href="#lander">
+                <img class="footer-logo" src="/assets/GKL FOOTER LOGO.png" alt="GKL Labs" />
+            </a>
+            <nav class="footer-nav">
+                <h4>Navigation</h4>
+                <a href="#about-us">About Us</a>
+                <a href="#built-by-us">Built By Us</a>
+                <a href="#review">Write A Review</a>
+            </nav>
+            <div class="footer-icons">
+                <a href="https://instagram.com/yourpage" target="_blank">
+                    <img src="assets/insta icon.png" alt="Instagram" />
+                </a>
+                <a href="https://wa.me/yournumber" target="_blank">
+                    <img src="assets/whatsapp icon.png" alt="WhatsApp" />
+                </a>
+            </div>
+        </div>
+        <p class="footer-bottom">GKL Labs™ — Built for performance.</p>
+    </footer>
+
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-overlay-content">
+            <div class="menu-icons">
+                <a href="support.html">
+                    <img src="/assets/Support Icon.png" alt="Support" />
+                </a>
+                <a href="store.html">
+                    <img src="/assets/Store Icon.png" alt="Store" />
+                </a>
+            </div>
+        </div>
+        <div class="menu-close-row">
+            <img src="/assets/Pack up.png" alt="Close" onclick="closeOverlay()" />
+        </div>
+    </div>
+
+    <div class="signin-overlay-border">
+        <div class="signin-overlay" id="signinOverlay">
+            <div class="signin-overlay-content">
+                <div class="signin-input-border">
+                    <input type="text" class="signin-input" placeholder="Enter Your Username..." maxlength="24" />
+                </div>
+                <div class="signin-input-border">
+                    <div class="signin-pass-group">
+                        <input type="password" class="signin-input" placeholder="Enter Your Password..." maxlength="22" id="signinPass" />
+                        <img class="toggle-pass" src="/assets/eye-off.png" alt="toggle" onclick="togglePass('signinPass', this)" />
+                    </div>
+                </div>
+                <div class="signin-btn-border">
+                    <button class="signin-submit-btn">SIGN IN</button>
+                </div>
+                <p class="signin-register-text">Don't have an account? <a class="signin-register-link" href="registration.html">Sign Up here.</a></p>
+                <a class="signin-forgot-link" href="resetpass.html">Forgot Password?</a>
+            </div>
+            <div class="signin-close-row">
+                <img src="/assets/close.png" alt="Close" onclick="closeSigninOverlay()" />
+            </div>
+        </div>
+    </div>
+
+    <div class="build-overlay-border" id="buildOverlayBorder" onclick="closeBuildOverlay(event)">
+        <div class="build-overlay" id="buildOverlay">
+            <div class="build-overlay-image-wrap">
+                <p class="build-overlay-title" id="buildOverlayTitle"></p>
+                <img class="build-overlay-img" id="buildOverlayImg" src="" alt="" />
+                <div class="build-overlay-close" onclick="closeBuildOverlay()">
+                    <img src="/assets/close.png" alt="Close" />
+                </div>
+            </div>
+            <div class="build-overlay-desc" id="buildOverlayDesc"></div>
+        </div>
+    </div>
+
+</body>
+</html>

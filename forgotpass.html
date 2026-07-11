@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js" defer></script>
+    <title>Forgot Password</title>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img class="header-logo" src="/assets/GKL Labs.png" alt="GKL Labs">
+        </a>
+    </header>
+    <div class="pagebg">
+        <h1 class="fp-title">Create New Password</h1>
+        <div class="forgotpass-box">
+            <div class="fp-fields">
+                <div class="fp-input-row">
+                    <div class="input-wrapper-grad">
+                        <input type="password" placeholder="Enter new password..." id="fppass1" maxlength="22" />
+                    </div>
+                    <img class="toggle-pass" src="/assets/eye-off.png" alt="toggle" onclick="togglePass('fppass1', this)" />
+                </div>
+                <div class="fp-input-row">
+                    <div class="input-wrapper-grad">
+                        <input type="password" placeholder="Repeat new password..." id="fppass2" maxlength="22" />
+                    </div>
+                    <img class="toggle-pass" src="/assets/eye-off.png" alt="toggle" onclick="togglePass('fppass2', this)" />
+                </div>
+            </div>
+            <div class="fp-btn-row">
+                <button class="fp-confirm-btn">Confirm password change</button>
+            </div>
+        </div>
+    </div>
+    <div class="pagebgend"></div>
+</body>
+</html>

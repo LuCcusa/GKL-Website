@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js" defer></script>
+    <title>Reset Password</title>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img class="header-logo" src="/assets/GKL Labs.png" alt="GKL Labs">
+        </a>
+    </header>
+    <div class="pagebg">
+        <div class="resetpass-page">
+            <h1 class="rptitle">Reset Password</h1>
+            <div class="resetpass-content">
+                <div class="input-wrapper">
+                    <input class="username-input" type="text" placeholder="Enter your username" maxlength="24" />
+                </div>
+                <button class="reset-btn">Send reset link</button>
+                <p class="reset-note">A password reset link will be sent to the email associated with this account.</p>
+            </div>
+        </div> 
+    </div>
+    <div class="pagebgend"></div>
+</body>
+</html>

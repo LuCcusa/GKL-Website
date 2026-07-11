@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-init.js"></script>
+    <script src="auth.js"></script>
+    <script src="script.js" defer></script>
+    <title>Registration</title>
+</head>
+<body>
+    <header>
+        <a href="main.html">
+            <img class="header-logo" src="/assets/GKL Labs.png" alt="GKL Labs">
+        </a>
+    </header>
+    <div class="regpagebg">
+        <h1 class="regtitle">Registration</h1>
+        <div class="reg-box">
+            <img class="reg-box-bg" src="/assets/MAIN GKL LOGO.png" alt="GKL Logo">
+            <div class="reg-fields">
+                <div class="reg-row">
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Enter username..." maxlength="24" />
+                    </div>
+                    <div class="input-wrapper">
+                        <input type="text" placeholder="Enter First Name..." />
+                    </div>
+                </div>
+                <div class="reg-row">
+                    <div class="pass-group">
+                        <div class="input-wrapper">
+                            <input type="password" placeholder="Enter password..." id="pass1" maxlength="22" />
+                            <img class="toggle-pass" src="/assets/eye-off.png" alt="toggle" onclick="togglePass('pass1', this)" />
+                        </div>
+                    </div>
+                    <div class="pass-group">
+                        <div class="input-wrapper">
+                            <input type="password" placeholder="Repeat Password..." id="pass2" maxlength="22" />
+                            <img class="toggle-pass" src="/assets/eye-off.png" alt="toggle" onclick="togglePass('pass2', this)" />
+                        </div>
+                    </div>
+                </div>
+                <div class="reg-row email-row">
+                    <div class="input-wrapper">
+                        <input type="email" placeholder="Enter your Email address." />
+                    </div>
+                </div>
+                <div class="tos-row">
+                    <img class="tos-checkbox" src="/assets/Unchecked.png" alt="checkbox" onclick="toggleCheckbox(this)" />
+                    <p class="tos-text">By creating an account, I agree to the <a class="tos-link" href="tos.html">Terms of Service</a> and acknowledge the <a class="tos-link" href="privacy.html">Privacy Policy</a>.</p>
+                </div>
+                <div class="signup-row">
+                    <button class="signup-btn" onclick="handleSignUp()">SIGN UP</button>
+                    <p class="tos-error" id="tos-error"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="footer-top">
+            <a href="main.html#lander">
+                <img class="footer-logo" src="/assets/GKL FOOTER LOGO.png" alt="GKL Labs" />
+            </a>
+            <nav class="footer-nav">
+                <h4>Navigation</h4>
+                <a href="main.html#about-us">About Us</a>
+                <a href="main.html#built-by-us">Built By Us</a>
+                <a href="main.html#review">Write A Review</a>
+            </nav>
+            <div class="footer-icons">
+                <a href="https://instagram.com/yourpage" target="_blank">
+                    <img src="assets/insta icon.png" alt="Instagram" />
+                </a>
+                <a href="https://wa.me/yournumber" target="_blank">
+                    <img src="assets/whatsapp icon.png" alt="WhatsApp" />
+                </a>
+            </div>
+        </div>
+        <p class="footer-bottom">GKL Labs™ — Built for performance.</p>
+    </footer>
+</body>
+</html>
