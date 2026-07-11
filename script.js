@@ -80,10 +80,10 @@ function togglePass(id, icon) {
     const input = document.getElementById(id);
     if (input.type === 'password') {
         input.type = 'text';
-        icon.src = '/assets/eye-on.png';
+        icon.src = 'assets/eye-on.png';
     } else {
         input.type = 'password';
-        icon.src = '/assets/eye-off.png';
+        icon.src = 'assets/eye-off.png';
     }
 }
 
@@ -93,7 +93,7 @@ let isChecked = false;
 
 function toggleCheckbox(img) {
     isChecked = !isChecked;
-    img.src = isChecked ? '/assets/checked.png' : '/assets/unchecked.png';
+    img.src = isChecked ? 'assets/checked.png' : 'assets/unchecked.png';
 }
 
 // sign up validation
@@ -203,7 +203,7 @@ function closePurchasehistoryOverlay() {
 const buildData = {
     'blurple': {
         name: 'Blurple',
-        img: '/assets/build blurple.png',
+        img: 'assets/build blurple.png',
         desc: `CPU: Intel Core i9-13900K
 GPU: NVIDIA GeForce RTX 4090
 RAM: G.Skill Trident Z5 RGB DDR5 32GB (2×16GB) 6000MHz
@@ -215,7 +215,7 @@ Case: Lian Li O11 Dynamic EVO`
     },
     'orange': {
         name: 'Orange',
-        img: '/assets/build orange.png',
+        img: 'assets/build orange.png',
         desc: `CPU: Intel Core i7-13700K
 GPU: NVIDIA GeForce RTX 3080
 RAM: Corsair Vengeance DDR4 32GB (2×16GB) 3600MHz
@@ -227,7 +227,7 @@ Case: Lian Li Lancool 216`
     },
     'red': {
         name: 'Red',
-        img: '/assets/build red.png',
+        img: 'assets/build red.png',
         desc: `CPU: AMD Ryzen 9 7950X3D (16-core, 32-thread, up to 5.7GHz)
 GPU: ASUS TUF Gaming RTX 5090 OC 32GB GDDR7
 RAM: 64GB (2×32GB) DDR5-6000
@@ -239,7 +239,7 @@ Case: Lian Li O11 Dynamic EVO RGB`
     },
     'rgb': {
         name: 'RGB',
-        img: '/assets/build rgb.png',
+        img: 'assets/build rgb.png',
         desc: `CPU: 
 GPU: 
 RAM: 
@@ -251,7 +251,7 @@ Case: `
     },
     'cyan': {
         name: 'Cyan',
-        img: '/assets/build cyan.png',
+        img: 'assets/build cyan.png',
         desc: `CPU: 
 GPU: 
 RAM: 
