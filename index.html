@@ -100,7 +100,7 @@
         <div class="signin-overlay" id="signinOverlay">
             <div class="signin-overlay-content">
                 <div class="signin-input-border">
-                    <input type="text" class="signin-input" placeholder="Enter Your Username..." maxlength="24" />
+                    <input type="text" class="signin-input" id="signinUsername" placeholder="Enter Your Username..." maxlength="24" />
                 </div>
                 <div class="signin-input-border">
                     <div class="signin-pass-group">
@@ -109,10 +109,11 @@
                     </div>
                 </div>
                 <div class="signin-btn-border">
-                    <button class="signin-submit-btn">SIGN IN</button>
+                    <button class="signin-submit-btn" onclick="handleSignIn()">SIGN IN</button>
                 </div>
                 <p class="signin-register-text">Don't have an account? <a class="signin-register-link" href="registration.html">Sign Up here.</a></p>
                 <a class="signin-forgot-link" href="resetpass.html">Forgot Password?</a>
+                <span class="signin-error" id="signin-error"></span>
             </div>
             <div class="signin-close-row">
                 <img src="assets/close.png" alt="Close" onclick="closeSigninOverlay()" />

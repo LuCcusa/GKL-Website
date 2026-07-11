@@ -521,6 +521,15 @@ footer {
     width: auto;
 }
 
+.signin-error {
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(8px, 1.2vw, 10px);
+    color: #FF6B6B;
+    text-align: center;
+    visibility: hidden;
+    margin-top: 4px;
+}
+
 
 /* build overlay */
 

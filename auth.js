@@ -64,3 +64,50 @@ async function handleSignUp() {
 
     openConfirmOverlay();
 }
+
+// sign in
+
+async function handleSignIn() {
+    const username = document.getElementById('signinUsername');
+    const password = document.getElementById('signinPass');
+    const error = document.getElementById('signin-error');
+
+    let message = '';
+
+    if (!username.value.trim()) {
+        message = 'Please enter your username.';
+    } else if (!password.value.trim()) {
+        message = 'Please enter your password.';
+    }
+
+    if (message) {
+        error.textContent = message;
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    error.style.visibility = 'hidden';
+
+    const { data: email, error: lookupError } = await supabaseClient
+        .rpc('get_email_by_username', { lookup_username: username.value.trim() });
+
+    if (lookupError || !email) {
+        error.textContent = 'Incorrect username or password.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    const { error: signInError } = await supabaseClient.auth.signInWithPassword({
+        email: email,
+        password: password.value
+    });
+
+    if (signInError) {
+        error.textContent = 'Incorrect username or password.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    closeSigninOverlay();
+    window.location.href = 'accpage.html';
+}
