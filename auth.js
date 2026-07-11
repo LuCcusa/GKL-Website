@@ -44,32 +44,16 @@ async function handleSignUp() {
         email: email.value.trim(),
         password: pass1.value,
         options: {
-            emailRedirectTo: 'https://luccusa.github.io/GKL-Website/success.html'
+            emailRedirectTo: 'https://luccusa.github.io/GKL-Website/success.html',
+            data: {
+                username: username.value.trim(),
+                first_name: firstName.value.trim()
+            }
         }
     });
 
     if (signUpError) {
         error.textContent = signUpError.message;
-        error.style.visibility = 'visible';
-        clearTimeout(window._tosErrorTimer);
-        window._tosErrorTimer = setTimeout(() => {
-            error.style.visibility = 'hidden';
-        }, 10000);
-        return;
-    }
-
-    const userId = data.user.id;
-
-    const { error: profileError } = await supabaseClient
-        .from('profiles')
-        .insert({
-            id: userId,
-            username: username.value.trim(),
-            first_name: firstName.value.trim()
-        });
-
-    if (profileError) {
-        error.textContent = 'Account created, but profile setup failed. Please contact support.';
         error.style.visibility = 'visible';
         clearTimeout(window._tosErrorTimer);
         window._tosErrorTimer = setTimeout(() => {
