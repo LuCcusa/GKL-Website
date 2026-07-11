@@ -93,7 +93,7 @@ let isChecked = false;
 
 function toggleCheckbox(img) {
     isChecked = !isChecked;
-    img.src = isChecked ? 'assets/checked.png' : 'assets/unchecked.png';
+    img.src = isChecked ? 'assets/Checked.png' : 'assets/Unchecked.png';
 }
 
 // sign up validation
