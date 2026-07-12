@@ -139,3 +139,31 @@ async function checkLoginState() {
 }
 
 document.addEventListener('DOMContentLoaded', checkLoginState);
+
+// load profile data into account page
+
+async function loadProfileData() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return;
+
+    const { data: profile, error } = await supabaseClient
+        .from('profiles')
+        .select('username, first_name, created_at')
+        .eq('id', session.user.id)
+        .single();
+
+    if (error || !profile) return;
+
+    const nameEl = document.querySelector('.profile-name');
+    const usernameEl = document.querySelector('.current-username-value');
+    const createdEl = document.getElementById('accountCreatedDate');
+
+    if (nameEl) nameEl.textContent = profile.first_name;
+    if (usernameEl) usernameEl.textContent = profile.username;
+    if (createdEl) {
+        const date = new Date(profile.created_at);
+        createdEl.textContent = date.toLocaleDateString();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadProfileData);
