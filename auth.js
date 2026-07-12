@@ -138,4 +138,4 @@ async function checkLoginState() {
     }
 }
 
-checkLoginState();
+document.addEventListener('DOMContentLoaded', checkLoginState);
