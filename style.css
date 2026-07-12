@@ -844,7 +844,7 @@ footer {
     min-height: 165px;
     max-width: 390px;
     max-height: 255px;
-    background: rgba(31, 31, 31, 0.75);
+    background: rgba(31, 31, 31, 0.85);
     border: 2px solid #2F2F2F;
     border-radius: 15px;
     z-index: 100;
@@ -939,7 +939,7 @@ footer {
     min-height: 350px;
     max-width: 390px;
     max-height: 480px;
-    background: rgba(31, 31, 31, 0.75);
+    background: rgba(31, 31, 31, 0.85);
     border: 2px solid #2F2F2F;
     border-radius: 15px 15px 0 0;
     z-index: 100;
