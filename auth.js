@@ -133,8 +133,11 @@ async function handleLogout() {
 async function checkLoginState() {
     const { data: { session } } = await supabaseClient.auth.getSession();
     const accountLink = document.getElementById('accountIconLink');
-    if (accountLink && session) {
-        accountLink.style.display = '';
+    const signinBtn = document.querySelector('.signin-btn');
+
+    if (session) {
+        if (accountLink) accountLink.style.display = '';
+        if (signinBtn) signinBtn.style.display = 'none';
     }
 }
 
