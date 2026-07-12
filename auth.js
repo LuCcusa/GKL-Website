@@ -111,3 +111,12 @@ async function handleSignIn() {
     closeSigninOverlay();
     window.location.href = 'accpage.html';
 }
+
+// session check for protected pages
+
+async function requireLogin() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+        window.location.href = 'index.html';
+    }
+}
