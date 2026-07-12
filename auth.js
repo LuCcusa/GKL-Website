@@ -120,3 +120,10 @@ async function requireLogin() {
         window.location.href = 'index.html';
     }
 }
+
+// logout
+
+async function handleLogout() {
+    await supabaseClient.auth.signOut();
+    window.location.href = 'index.html';
+}
