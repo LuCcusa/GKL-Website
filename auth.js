@@ -127,3 +127,15 @@ async function handleLogout() {
     await supabaseClient.auth.signOut();
     window.location.href = 'index.html';
 }
+
+// show/hide account icon based on login state
+
+async function checkLoginState() {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    const accountLink = document.getElementById('accountIconLink');
+    if (accountLink && session) {
+        accountLink.style.display = '';
+    }
+}
+
+checkLoginState();
