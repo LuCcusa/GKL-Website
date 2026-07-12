@@ -213,3 +213,10 @@ async function handleUsernameChange() {
     document.querySelector('.current-username-value').textContent = newUsername;
     closeUsernameChangeOverlay();
 }
+
+function closeUsernameChangeOnBackdrop(e) {
+    if (e.target === document.getElementById('usernameChangeBackdrop')) {
+        closeUsernameChangeOverlay();
+    }
+}
+
