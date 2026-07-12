@@ -637,6 +637,11 @@ footer {
     background: linear-gradient(to bottom, #330707 0%,#101010 100%);
 }
 
+.pagebg-content {
+    position: relative;
+    z-index: 1;
+}
+
 .aptitle {
     font-family: 'Franklin Gothic Heavy', 'Arial Black', sans-serif;
     font-size: 30px;
