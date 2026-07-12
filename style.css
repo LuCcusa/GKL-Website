@@ -617,6 +617,19 @@ footer {
 
 /* account page*/
 
+.pagebg-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 65%;
+    min-width: 200px;
+    max-width: 640px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: -1;
+}
+
 .pagebg {
     height: 681px;
     width: 100vw;
@@ -635,11 +648,6 @@ footer {
     height: 133px;
     width: 100vw;
     background: linear-gradient(to bottom, #330707 0%,#101010 100%);
-}
-
-.pagebg-content {
-    position: relative;
-    z-index: 1;
 }
 
 .aptitle {
