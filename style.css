@@ -625,7 +625,7 @@ footer {
     width: 65%;
     min-width: 200px;
     max-width: 640px;
-    opacity: 0.65;
+    opacity: 1;
     pointer-events: none;
     z-index: -1;
 }
