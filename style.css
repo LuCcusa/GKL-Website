@@ -627,6 +627,8 @@ footer {
     align-items: center;
     padding-top: 70px;
     box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
 }
 
 .pagebgend {
