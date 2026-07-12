@@ -341,6 +341,11 @@ footer {
     max-height: 220px;
 }
 
+.menu-overlay:has(#accountIconLink:not([style*="display: none"])) .menu-icons img {
+    width: 28px;
+    height: 28px;
+}
+
 .menu-overlay.active {
     transform: translateY(0);
     pointer-events: all;
