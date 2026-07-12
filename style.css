@@ -335,6 +335,12 @@ footer {
     pointer-events: none;
 }
 
+.menu-overlay:has(#accountIconLink:not([style*="display: none"])) {
+    height: 30vw;
+    min-height: 200px;
+    max-height: 220px;
+}
+
 .menu-overlay.active {
     transform: translateY(0);
     pointer-events: all;
