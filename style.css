@@ -342,8 +342,8 @@ footer {
 }
 
 .menu-overlay:has(#accountIconLink:not([style*="display: none"])) .menu-icons img {
-    width: 35px;
-    height: 35px;
+    width: 12vw;
+    height: 24vw;
 }
 
 .menu-overlay.active {
