@@ -220,3 +220,29 @@ function closeUsernameChangeOnBackdrop(e) {
     }
 }
 
+// change password
+
+async function handlePasswordChange() {
+    const pass1 = document.getElementById('newpass1');
+    const pass2 = document.getElementById('newpass2');
+
+    if (!pass1.value.trim() || !pass2.value.trim()) {
+        return;
+    }
+
+    if (pass1.value !== pass2.value) {
+        return;
+    }
+
+    const { error } = await supabaseClient.auth.updateUser({
+        password: pass1.value
+    });
+
+    if (error) {
+        return;
+    }
+
+    pass1.value = '';
+    pass2.value = '';
+    closePasschangeOverlay();
+}
