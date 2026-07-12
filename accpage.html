@@ -51,9 +51,19 @@
                 <hr class="username-divider" />
                 <span class="current-username-value">username</span>
             </div>
-            <a href="forgotpass.html" class="change-username-btn">Change Username</a>
+            <a href="#" class="change-username-btn" onclick="openUsernameChangeOverlay(); return false;">Change Username</a>
             <p class="username-warning">Attention: username is used to log into your account</p>
             <p class="account-created">Account created: <span id="accountCreatedDate"></span></p>
+        </div>
+    </div>
+
+    <div class="username-change-backdrop" id="usernameChangeBackdrop">
+        <div class="username-change-box">
+            <div class="input-wrapper-grad">
+                <input type="text" id="newUsernameInput" placeholder="Enter new username..." maxlength="24" />
+            </div>
+            <button class="username-change-confirm-btn" onclick="handleUsernameChange()">Confirm</button>
+            <span class="username-change-error" id="username-change-error"></span>
         </div>
     </div>
 

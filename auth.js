@@ -167,3 +167,49 @@ async function loadProfileData() {
 }
 
 document.addEventListener('DOMContentLoaded', loadProfileData);
+
+// Username Change
+
+function openUsernameChangeOverlay() {
+    document.getElementById('usernameChangeBackdrop').classList.add('active');
+}
+
+function closeUsernameChangeOverlay() {
+    document.getElementById('usernameChangeBackdrop').classList.remove('active');
+    document.getElementById('newUsernameInput').value = '';
+    document.getElementById('username-change-error').style.visibility = 'hidden';
+}
+
+async function handleUsernameChange() {
+    const input = document.getElementById('newUsernameInput');
+    const error = document.getElementById('username-change-error');
+    const newUsername = input.value.trim();
+
+    if (!newUsername) {
+        error.textContent = 'Please enter a username.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return;
+
+    const { error: updateError } = await supabaseClient
+        .from('profiles')
+        .update({ username: newUsername })
+        .eq('id', session.user.id);
+
+    if (updateError) {
+        if (updateError.code === '23505') {
+            error.textContent = 'This username is already taken.';
+        } else {
+            error.textContent = 'Something went wrong. Please try again.';
+        }
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    error.style.visibility = 'hidden';
+    document.querySelector('.current-username-value').textContent = newUsername;
+    closeUsernameChangeOverlay();
+}

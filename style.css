@@ -828,6 +828,69 @@ footer {
     text-decoration: none;
 }
 
+.username-change-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-out;
+}
+
+.username-change-backdrop.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.username-change-box {
+    width: clamp(260px, 80vw, 380px);
+    background: linear-gradient(to bottom, #2B2929 45%, #481A1A 100%);
+    border: 2px solid #3A3333;
+    border-radius: 18px;
+    padding: clamp(20px, 5vw, 30px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    transform: scale(0.9);
+    transition: transform 300ms ease-out;
+}
+
+.username-change-backdrop.active .username-change-box {
+    transform: scale(1);
+}
+
+.username-change-confirm-btn {
+    background: #BA2323;
+    border: 1px solid #3d3636;
+    border-radius: 12px;
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #FFFFFF;
+    padding: 8px 24px;
+    transition: transform 0.2s ease;
+}
+
+.username-change-confirm-btn:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.username-change-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #FF6B6B;
+    text-align: center;
+    visibility: hidden;
+}
+
 .username-warning {
     font-family: 'Inter', sans-serif;
     font-size: 9px;
@@ -1791,6 +1854,11 @@ footer {
 
     .change-username-btn {
         margin-top: 26px;
+    }
+
+    .username-change-box {
+        width: 420px;
+        padding: 36px;
     }
 
     .purchasehistory-overlay {
