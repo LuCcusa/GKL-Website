@@ -861,10 +861,24 @@ footer {
     gap: 16px;
     transform: scale(0.9);
     transition: transform 300ms ease-out;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
 }
 
 .username-change-backdrop.active .username-change-box {
     transform: scale(1);
+}
+
+.username-change-logo {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: -1;
 }
 
 .username-change-confirm-btn {
