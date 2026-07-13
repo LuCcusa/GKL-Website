@@ -53,7 +53,11 @@ async function handleSignUp() {
     });
 
     if (signUpError) {
-        error.textContent = signUpError.message;
+        if (signUpError.message.toLowerCase().includes('breach') || signUpError.message.toLowerCase().includes('weak')) {
+            error.textContent = 'This password has appeared in a data breach. Please choose a different one.';
+        } else {
+            error.textContent = signUpError.message;
+        }
         error.style.visibility = 'visible';
         clearTimeout(window._tosErrorTimer);
         window._tosErrorTimer = setTimeout(() => {
@@ -291,7 +295,11 @@ async function handlePasswordChange() {
     });
 
     if (updateError) {
-        showError('Something went wrong. Please try again.');
+        if (updateError.message.toLowerCase().includes('breach') || updateError.message.toLowerCase().includes('weak')) {
+            showError('This password has appeared in a data breach. Please choose a different one.');
+        } else {
+            showError('Something went wrong. Please try again.');
+        }
         return;
     }
 
@@ -403,7 +411,11 @@ async function handleForgotPasswordChange() {
     });
 
     if (updateError) {
-        showError('Something went wrong. Please try again.');
+        if (updateError.message.toLowerCase().includes('breach') || updateError.message.toLowerCase().includes('weak')) {
+            showError('This password has appeared in a data breach. Please choose a different one.');
+        } else {
+            showError('Something went wrong. Please try again.');
+        }
         return;
     }
 
