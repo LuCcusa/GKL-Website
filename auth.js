@@ -230,17 +230,24 @@ async function handlePasswordChange() {
     const pass2 = document.getElementById('newpass2');
     const error = document.getElementById('passchange-error');
 
-    let message = '';
-
-    if (!pass1.value.trim() || !pass2.value.trim()) {
-        message = 'Please fill out both fields.';
-    } else if (pass1.value !== pass2.value) {
-        message = 'Passwords do not match.';
+    function showError(msg) {
+        error.textContent = msg;
+        error.style.visibility = 'visible';
+        clearTimeout(window._passchangeErrorTimer);
+        window._passchangeErrorTimer = setTimeout(() => {
+            error.style.visibility = 'hidden';
+        }, 10000);
+        pass1.value = '';
+        pass2.value = '';
     }
 
-    if (message) {
-        error.textContent = message;
-        error.style.visibility = 'visible';
+    if (!pass1.value.trim() || !pass2.value.trim()) {
+        showError('Please fill out both fields.');
+        return;
+    }
+
+    if (pass1.value !== pass2.value) {
+        showError('Passwords do not match.');
         return;
     }
 
@@ -254,8 +261,7 @@ async function handlePasswordChange() {
         .single();
 
     if (profileError) {
-        error.textContent = 'Something went wrong. Please try again.';
-        error.style.visibility = 'visible';
+        showError('Something went wrong. Please try again.');
         return;
     }
 
@@ -265,8 +271,7 @@ async function handlePasswordChange() {
         const hoursSince = (now - lastChanged) / (1000 * 60 * 60);
 
         if (hoursSince < 1) {
-            error.textContent = 'Password has recently been changed. Please try again later.';
-            error.style.visibility = 'visible';
+            showError('Password has recently been changed. Please try again later.');
             return;
         }
     }
@@ -277,8 +282,7 @@ async function handlePasswordChange() {
     });
 
     if (!sameCheckError) {
-        error.textContent = "New password can't match your current password.";
-        error.style.visibility = 'visible';
+        showError("New password can't match your current password.");
         return;
     }
 
@@ -287,8 +291,7 @@ async function handlePasswordChange() {
     });
 
     if (updateError) {
-        error.textContent = 'Something went wrong. Please try again.';
-        error.style.visibility = 'visible';
+        showError('Something went wrong. Please try again.');
         return;
     }
 
