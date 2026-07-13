@@ -1743,6 +1743,17 @@ footer {
 
 
 @media (min-width: 768px) {
+    .header-logo {
+        -webkit-user-drag: none;
+        user-select: none;
+        transition: transform 0.2s ease;
+    }
+
+    .header-logo:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+    }
+
     .about-us {
         flex-direction: row;
         justify-content: center;
