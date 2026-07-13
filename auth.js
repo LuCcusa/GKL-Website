@@ -228,23 +228,76 @@ function closeUsernameChangeOnBackdrop(e) {
 async function handlePasswordChange() {
     const pass1 = document.getElementById('newpass1');
     const pass2 = document.getElementById('newpass2');
+    const error = document.getElementById('passchange-error');
+
+    let message = '';
 
     if (!pass1.value.trim() || !pass2.value.trim()) {
+        message = 'Please fill out both fields.';
+    } else if (pass1.value !== pass2.value) {
+        message = 'Passwords do not match.';
+    }
+
+    if (message) {
+        error.textContent = message;
+        error.style.visibility = 'visible';
         return;
     }
 
-    if (pass1.value !== pass2.value) {
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) return;
+
+    const { data: profile, error: profileError } = await supabaseClient
+        .from('profiles')
+        .select('password_changed_at')
+        .eq('id', session.user.id)
+        .single();
+
+    if (profileError) {
+        error.textContent = 'Something went wrong. Please try again.';
+        error.style.visibility = 'visible';
         return;
     }
 
-    const { error } = await supabaseClient.auth.updateUser({
+    if (profile.password_changed_at) {
+        const lastChanged = new Date(profile.password_changed_at);
+        const now = new Date();
+        const hoursSince = (now - lastChanged) / (1000 * 60 * 60);
+
+        if (hoursSince < 1) {
+            error.textContent = 'Password has recently been changed. Please try again later.';
+            error.style.visibility = 'visible';
+            return;
+        }
+    }
+
+    const { error: sameCheckError } = await supabaseClient.auth.signInWithPassword({
+        email: session.user.email,
         password: pass1.value
     });
 
-    if (error) {
+    if (!sameCheckError) {
+        error.textContent = "New password can't match your current password.";
+        error.style.visibility = 'visible';
         return;
     }
 
+    const { error: updateError } = await supabaseClient.auth.updateUser({
+        password: pass1.value
+    });
+
+    if (updateError) {
+        error.textContent = 'Something went wrong. Please try again.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    await supabaseClient
+        .from('profiles')
+        .update({ password_changed_at: new Date().toISOString() })
+        .eq('id', session.user.id);
+
+    error.style.visibility = 'hidden';
     pass1.value = '';
     pass2.value = '';
     closePasschangeOverlay();

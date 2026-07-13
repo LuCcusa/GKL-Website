@@ -1017,6 +1017,14 @@ footer {
     background: #e61919;
 }
 
+.passchange-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    color: #FF6B6B;
+    text-align: center;
+    visibility: hidden;
+}
+
 .purchasehistory-overlay {
     position: fixed;
     top: 250px;
