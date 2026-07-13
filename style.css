@@ -1175,6 +1175,14 @@ footer {
     margin-top: auto;
 }
 
+.reset-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    color: #FF6B6B;
+    text-align: center;
+    visibility: hidden;
+}
+
 /* registration page */
 
 .regpagebg {

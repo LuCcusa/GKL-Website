@@ -302,3 +302,39 @@ async function handlePasswordChange() {
     pass2.value = '';
     closePasschangeOverlay();
 }
+
+// reset password request
+
+async function handlePasswordResetRequest() {
+    const username = document.getElementById('resetUsername');
+    const error = document.getElementById('reset-error');
+
+    if (!username.value.trim()) {
+        error.textContent = 'Please enter your username.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    const { data: email, error: lookupError } = await supabaseClient
+        .rpc('get_email_by_username', { lookup_username: username.value.trim() });
+
+    if (lookupError || !email) {
+        error.textContent = 'No account found with that username.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    const { error: resetError } = await supabaseClient.auth.resetPasswordForEmail(email, {
+        redirectTo: 'https://luccusa.github.io/GKL-Website/forgotpass.html'
+    });
+
+    if (resetError) {
+        error.textContent = 'Something went wrong. Please try again.';
+        error.style.visibility = 'visible';
+        return;
+    }
+
+    error.style.visibility = 'hidden';
+    username.value = '';
+    openConfirmOverlay();
+}

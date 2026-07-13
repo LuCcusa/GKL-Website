@@ -23,13 +23,22 @@
             <h1 class="rptitle">Reset Password</h1>
             <div class="resetpass-content">
                 <div class="input-wrapper">
-                    <input class="username-input" type="text" placeholder="Enter your username" maxlength="24" />
+                    <input class="username-input" type="text" id="resetUsername" placeholder="Enter your username" maxlength="24" />
                 </div>
-                <button class="reset-btn">Send reset link</button>
+                <button class="reset-btn" onclick="handlePasswordResetRequest()">Send reset link</button>
+                <span class="reset-error" id="reset-error"></span>
                 <p class="reset-note">A password reset link will be sent to the email associated with this account.</p>
             </div>
         </div> 
     </div>
     <div class="pagebgend"></div>
+
+    <div class="confirm-backdrop" id="confirmBackdrop">
+        <div class="confirm-box">
+            <span class="confirm-text">A password reset link has been sent to your email.</span>
+            <button class="confirm-close-btn" onclick="closeConfirmOverlay()">Got it</button>
+        </div>
+    </div>
+
 </body>
 </html>
