@@ -1754,6 +1754,11 @@ footer {
         cursor: pointer;
     }
 
+    .header-logo-link {
+        -webkit-user-drag: none;
+        user-select: none;
+    }
+
     .about-us {
         flex-direction: row;
         justify-content: center;
