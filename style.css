@@ -1455,6 +1455,14 @@ footer {
     width: 90%;
 }
 
+.fp-error {
+    font-family: 'Inter', sans-serif;
+    font-size: 8px;
+    color: #FF6B6B;
+    text-align: center;
+    visibility: hidden;
+}
+
 .input-wrapper-grad {
     padding: 2px;
     background: linear-gradient(to top right, #323232, #A70000);

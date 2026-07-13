@@ -341,3 +341,79 @@ async function handlePasswordResetRequest() {
     username.value = '';
     openConfirmOverlay();
 }
+
+// forgot password - set new password via recovery link
+
+async function handleForgotPasswordChange() {
+    const pass1 = document.getElementById('fppass1');
+    const pass2 = document.getElementById('fppass2');
+    const error = document.getElementById('fp-error');
+
+    function showError(msg) {
+        error.textContent = msg;
+        error.style.visibility = 'visible';
+        clearTimeout(window._fpErrorTimer);
+        window._fpErrorTimer = setTimeout(() => {
+            error.style.visibility = 'hidden';
+        }, 10000);
+        pass1.value = '';
+        pass2.value = '';
+    }
+
+    if (!pass1.value.trim() || !pass2.value.trim()) {
+        showError('Please fill out both fields.');
+        return;
+    }
+
+    if (pass1.value !== pass2.value) {
+        showError('Passwords do not match.');
+        return;
+    }
+
+    const { data: { session } } = await supabaseClient.auth.getSession();
+    if (!session) {
+        showError('Invalid or expired reset link.');
+        return;
+    }
+
+    const { data: profile, error: profileError } = await supabaseClient
+        .from('profiles')
+        .select('password_changed_at')
+        .eq('id', session.user.id)
+        .single();
+
+    if (profileError) {
+        showError('Something went wrong. Please try again.');
+        return;
+    }
+
+    if (profile.password_changed_at) {
+        const lastChanged = new Date(profile.password_changed_at);
+        const now = new Date();
+        const minutesSince = (now - lastChanged) / (1000 * 60);
+
+        if (minutesSince < 5) {
+            showError('Password has recently been changed. Please try again later.');
+            return;
+        }
+    }
+
+    const { error: updateError } = await supabaseClient.auth.updateUser({
+        password: pass1.value
+    });
+
+    if (updateError) {
+        showError('Something went wrong. Please try again.');
+        return;
+    }
+
+    await supabaseClient
+        .from('profiles')
+        .update({ password_changed_at: new Date().toISOString() })
+        .eq('id', session.user.id);
+
+    error.style.visibility = 'hidden';
+    pass1.value = '';
+    pass2.value = '';
+    window.location.href = 'index.html';
+}
