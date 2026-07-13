@@ -1886,17 +1886,17 @@ footer {
     }
 
     .purchasehistory-overlay {
-        width: 46vw;
+        width: 56vw;
         height: 50vw;
-        min-width: 340px;
+        min-width: 420px;
         min-height: 350px;
-        max-width: 480px;
+        max-width: 600px;
         max-height: 480px;
     }
 
     .purchasehistory-close-row {
         left: unset;
-        right: calc(50% - 15px - 480px / 2 + 15px);
+        right: calc(50% - 15px - 600px / 2 + 15px);
         top: 265px;
     }
 
